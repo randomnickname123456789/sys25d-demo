@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,6 +21,19 @@ namespace sys25d_demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("DevCorsPolicy", builder =>
+                {
+                    builder
+                        .WithOrigins("http://localhost:5173")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                });
+            });
+            
             services.AddControllers();
 
             // In production, the React files will be served from this directory
@@ -51,6 +65,8 @@ namespace sys25d_demo
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+
+                endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>
@@ -59,6 +75,7 @@ namespace sys25d_demo
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:5173");
                 }
             });

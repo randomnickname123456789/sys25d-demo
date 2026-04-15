@@ -2,13 +2,19 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <RootNamespace>sys25d_demo</RootNamespace>
+
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+
+        <SpaRoot>ClientApp\</SpaRoot>
+        <SpaProxyServerUrl>http://localhost:5173</SpaProxyServerUrl>
+        <SpaProxyLaunchCommand>pnpm run dev</SpaProxyLaunchCommand>
+
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>
-        <SpaRoot>ClientApp\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-        <RootNamespace>sys25d_demo</RootNamespace>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
