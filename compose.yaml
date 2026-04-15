@@ -1,0 +1,7 @@
+﻿services:
+  sys25d-demo:
+    image: sys25d-demo
+    build:
+      context: .
+      dockerfile: sys25d-demo/Dockerfile
+
